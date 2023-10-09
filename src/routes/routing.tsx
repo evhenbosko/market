@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Index from "../components/Index.tsx";
 import Layout from "./Layout.tsx";
+import Products from "../pages/products/Products.tsx";
 export const router=createBrowserRouter([
 {
     path:'/',
@@ -12,7 +13,7 @@ export const router=createBrowserRouter([
         },
         {
             path:"/products",
-            element:<>product</>
+            element:<Products/>
         },
         {
             path:"/basket",
