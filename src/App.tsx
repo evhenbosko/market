@@ -1,12 +1,12 @@
 import { useEffect} from 'react'
 import './App.css'
-import {useAppDispatch, useAppSelector} from './hooks/redux'
-import { productSlice } from './store/reducers/ProductSlice';
+import {useAppDispatch} from './hooks/redux'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { fetchProducts } from './store/reducers/ActionCreators';
 
 function App() {
-const dispatch=useAppDispatch();
+  
+  const dispatch=useAppDispatch();
 useEffect(()=>{ 
   dispatch(fetchProducts())
 },[])  
