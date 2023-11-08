@@ -42,14 +42,36 @@
 .read-the-docs {
   color: #888;
 }
+@media(min-width:768px){
+  .container{
+      display: grid;
+    grid-template-columns: 2fr 2fr;
+    padding: 25px
+  
+  }
+}
 
-.container{
-  display: grid;
-  grid-template-columns: 2fr 2fr 2fr;
-  padding: 25px
+@media(max-width:768px){
+  .container{
+      display: grid;
+    grid-template-columns: 2fr;
+    padding: 25px
+  
+  }
+
+}
+@media(min-width:1024px){
+  .container{
+      display: grid;
+    grid-template-columns: 2fr 2fr 2fr;
+    padding: 25px
+  
+  }
 
 }
 .item{
   margin: 25px;
   box-shadow: 5px 5px 5px gray;
 }
+
+

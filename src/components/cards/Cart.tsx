@@ -1,18 +1,29 @@
-import { useState } from 'react';
+import {useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { FcLikePlaceholder} from "react-icons/fc";
 import { FcLike} from "react-icons/fc";
 import { useAppDispatch } from '../../hooks/redux';
-import { basketSlice } from '../../store/reducers/BasketSlice';
+
+import { gsap } from 'gsap';
+
+
 function Cart(props:any) {
   const [like,setLike]=useState(false);
   const dispatch =useAppDispatch()
-  const {addItem,delItem}= basketSlice.actions
-  const num={
-    number:1
-  }
+
   
+  const buyAnimate=()=>{
+    gsap.fromTo('.'+classes.buy,{scale:0.5},{scale:1,duration:0.5})
+  }
+  const likeAnimate=()=>{
+    gsap.fromTo('.'+classes.like, { rotation: 360},{rotation:0, duration: 1 });
+    
+  }
+  const classes={
+    like:"like"+props.item.id,
+    buy:"buy"+props.item.id
+  }
   return (
     <div className="item d-flex justify-content-around">
       <Card style={{ width: '18rem' }}>
@@ -22,14 +33,21 @@ function Cart(props:any) {
           </Card.Text>
 
           <Card.Title>{props.item.title}</Card.Title>
-          
+          <Card.Title>price {props.item.price}$</Card.Title>
           <Card.Text>{props.item.description}
           </Card.Text>
+       
           <Button onClick={()=>{
-                  dispatch(addItem({...props.item,...num}))
-          }} variant="primary">BUY!</Button>
-          <div className='like' onClick={()=>setLike(!like)}>
-          {like&&<FcLike/>||<FcLikePlaceholder />}
+                  
+                  buyAnimate()
+          }}      variant="primary" 
+                  className={classes.buy}
+               >BUY!</Button>
+          <div    
+                  className={classes.like} 
+                  onClick={()=>{setLike(!like);likeAnimate()}}
+                  style={{display:props.display.prod}}>
+            { like&&<FcLike/>||<FcLikePlaceholder />}
           </div>
         </Card.Body>
       </Card>
